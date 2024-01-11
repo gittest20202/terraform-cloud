@@ -4,3 +4,7 @@ variable "rg_name" {
 variable "rg_location" {
     type = string
 }
+
+variable "client_secret"{
+   type = string
+}   
