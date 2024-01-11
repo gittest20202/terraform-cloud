@@ -7,4 +7,8 @@ variable "rg_location" {
 
 variable "client_secret"{
    type = string
-}   
+}
+
+variable "vnetname" {
+  type = string
+}
