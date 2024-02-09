@@ -21,6 +21,9 @@ on:
       Location:
         description: "Location"
         type: "string"  
+      action:
+        description: "Action to perform like apply or destroy"
+        type: "string"   
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -50,9 +53,9 @@ jobs:
       - name: 'Terraform plan'
         id: plan
         run: |
-          terraform plan -var rg_name=${{ github.event.inputs.ResourceGroupName }} -var rg_location=${{ github.event.inputs.Location }} -var vnetname=${{ github.event.inputs.VirtualNetworkName }}
+          terraform ${{ github.event.inputs.action }} -var rg_name=${{ github.event.inputs.ResourceGroupName }} -var rg_location=${{ github.event.inputs.Location }} -var vnetname=${{ github.event.inputs.VirtualNetworkName }}
                     
       - name: 'Terraform apply'
         id: apply
         run: |
-          terraform apply -var rg_name=${{ github.event.inputs.ResourceGroupName }} -var rg_location=${{ github.event.inputs.Location }} -var vnetname=${{ github.event.inputs.VirtualNetworkName }} -auto-approve     
+          terraform ${{ github.event.inputs.action }} -var rg_name=${{ github.event.inputs.ResourceGroupName }} -var rg_location=${{ github.event.inputs.Location }} -var vnetname=${{ github.event.inputs.VirtualNetworkName }} -auto-approve     
